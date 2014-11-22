@@ -7,11 +7,22 @@
  *
  * @author niallquinn
  */
+
+package webApp;
+
 public class User
 {
     private String firstName;
     private String lastName;
     private String dob;
+    private Sex sex;
+    
+    public User(String firstName, String lastName, String dob, Sex sex) {
+        this.firstName = firstName;
+        this.lastName = lastName;
+        this.dob = dob;
+        this.sex = sex;
+    }
     
     public String getFirstName() {
         return firstName;
@@ -27,5 +38,21 @@ public class User
     
     public void setLastName(String lastName) {
         this.lastName = lastName;
+    }
+    
+    public String getDob() {
+        return dob;
+    }
+    
+    public void setDob(String dob) {
+        this.dob = dob;
+    }
+    
+    public Sex getSex() {
+        return sex;
+    }
+    
+    public void setSex(Sex sex) {
+        this.sex = sex;
     }
 }
