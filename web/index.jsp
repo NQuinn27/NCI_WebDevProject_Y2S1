@@ -60,24 +60,32 @@
     <div class="container">
       <!-- Example row of columns -->
         <div class="row">
-            <div class="col-md-6">
+            <!--<div class="col-md-6">-->
                 <h2>Users!</h2>
+                <table class="table table-striped">
+                    <th>ID</th>
+                    <th>First Name</th>
+                    <th>Last Name</th>
+                    <th>Sex</th>
+                    <th>DOB</th>
+                    <th>Signup Date</th>
+                    <th>Edit</th>
+                    <th>Delete</th>
                 <!-- For loop to iterate through the users and print the data -->
                     <% for (int x=0 ; x < 5 ; x++) { %>
-                        <ul class="boxed">
-                            <li>Name: <%out.print(users[x].getFirstName());%> <%out.print(users[x].getLastName());%> </li>
-                            <li>Sex: <%String sex = (users[x].getSex() == Sex.MALE) ? "Male" : "Female"; out.print(sex);%></li>
-                            <li>DOB: <%out.print(users[x].getDob());%></li>
-                        </ul>
-                        <br>
+                        <tr>
+                            <td><%out.print(x);%></td>
+                            <td><%out.print(users[x].getFirstName());%></td>
+                            <td><%out.print(users[x].getLastName());%></td>
+                            <td><%String sex = (users[x].getSex() == Sex.MALE) ? "Male" : "Female"; out.print(sex);%></td>
+                            <td><%out.print(users[x].getDob());%></td>
+                            <td><%out.print("dd/mm/yyyy");%></td>
+                            <td><a href="#">Edit</a></td>
+                            <td><a href="#">Delete</a></td>
+                        </tr>
                     <% } %>
-                <p><a class="btn btn-default" href="#" role="button">View details &raquo;</a></p>
-            </div>
-            <div class="col-md-6">
-                <h2>Heading</h2>
-                <p>Donec id elit non mi porta gravida at eget metus. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus. Etiam porta sem malesuada magna mollis euismod. Donec sed odio dui. </p>
-                <p><a class="btn btn-default" href="#" role="button">View details &raquo;</a></p>
-            </div>
+                <table>
+                <p><a class="btn btn-default" href="#" role="button">Add New User &raquo;</a></p>
         </div>
         <hr>
         <footer>
@@ -87,6 +95,6 @@
 
         
         
-        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.1/js/bootstrap.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.1/js/bootstrap.min.js"></script>
     </body>
 </html>
