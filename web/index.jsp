@@ -8,13 +8,13 @@
 <%@ page import="webApp.User" %>
 
 <%
-    webApp.User userOne = new User("Niall", "Quinn", "22/08/1988", webApp.Sex.MALE);
+    User userOne = new User("Niall", "Quinn", "22/08/1988", Sex.MALE);
     User userTwo = new User("John", "O'Shea", "dd/mm/yyyy", Sex.MALE);
     User userThree = new User("Joe", "Bloggs", "dd/mm/yyyy", Sex.MALE);
     User userFour = new User("Jane", "Bloggs", "dd/mm/yyyy", Sex.FEMALE);
     User userFive = new User("John", "O'Shea", "dd/mm/yyyy", Sex.MALE);
     
-    webApp.User[] users = {userOne,userTwo,userThree,userFour,userFive};
+    User[] users = {userOne,userTwo,userThree,userFour,userFive};
     
 %>
 
