@@ -1,9 +1,10 @@
 <%-- 
-    Document   : index
+    Document   : allUsers
     Created on : Nov 22, 2014, 2:16:35 PM
     Author     : niallquinn
 --%>
 
+<%@page import="java.util.ArrayList"%>
 <%@page import="webApp.Sex"%>
 <%@ page import="webApp.User" %>
 
@@ -13,19 +14,7 @@
         or delegate to a java class. (Probably the latter to keep this page
         clean).
     */
-    User userOne = new User("Niall", "Quinn", "22/08/1988", Sex.MALE);
-    User userTwo = new User("John", "O'Shea", "dd/mm/yyyy", Sex.MALE);
-    User userThree = new User("Joe", "Bloggs", "dd/mm/yyyy", Sex.MALE);
-    User userFour = new User("Jane", "Bloggs", "dd/mm/yyyy", Sex.FEMALE);
-    User userFive = new User("John", "O'Shea", "dd/mm/yyyy", Sex.MALE);
-    
-    User[] users = {userOne,userTwo,userThree,userFour,userFive};
-    
-    String urlParams = request.getParameter("id");
-    int number = -1;
-    if (urlParams != null) {
-        number = Integer.parseInt(urlParams);
-    }
+    ArrayList<User> list = (ArrayList<User>)request.getAttribute("list");
     
 %>
 
@@ -72,8 +61,7 @@
       <!-- Example row of columns -->
         <div class="row">
             <!--<div class="col-md-6">-->
-            <h3>Number is <% out.print(number);%></h3>
-                <h2>Users!</h2>
+                <h2>All Users</h2>
                 <table class="table table-striped">
                     <th>ID</th>
                     <th>First Name</th>
@@ -84,17 +72,13 @@
                     <th>Edit</th>
                     <th>Delete</th>
                 <!-- For loop to iterate through the users and print the data -->
-                    <% for (int x=0 ; x < 5 ; x++) { %>
-                        <%if (number == x) {
-                            out.print("<tr class=\"red\">");
-                        } else {
-                            out.print("<tr>");
-                        }%>
-                            <td><%out.print(x);%></td>
-                            <td><%out.print(users[x].getFirstName());%></td>
-                            <td><%out.print(users[x].getLastName());%></td>
-                            <td><%String sex = (users[x].getSex() == Sex.MALE) ? "Male" : "Female"; out.print(sex);%></td>
-                            <td><%out.print(users[x].getDob());%></td>
+                    <% for (int x=0 ; x < list.size() ; x++) { %>
+                        <tr>
+                            <td><%out.print("<a href=/NCI_WebDevProject_Y2S1/Users?id=" + list.get(x).getIdentifier()+ ">" + list.get(x).getIdentifier() + "</a>");%></td>
+                            <td><%out.print(list.get(x).getFirstName());%></td>
+                            <td><%out.print(list.get(x).getLastName());%></td>
+                            <td><%String sex = (list.get(x).getSex() == Sex.MALE) ? "Male" : "Female"; out.print(sex);%></td>
+                            <td><%out.print(list.get(x).getDob());%></td>
                             <td><%out.print("dd/mm/yyyy");%></td>
                             <td><a href="#">Edit</a></td>
                             <td><a href="#">Delete</a></td>
@@ -114,3 +98,4 @@
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.1/js/bootstrap.min.js"></script>
     </body>
 </html>
+

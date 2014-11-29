@@ -21,6 +21,12 @@
     
     User[] users = {userOne,userTwo,userThree,userFour,userFive};
     
+    String urlParams = request.getParameter("id");
+    int number = -1;
+    if (urlParams != null) {
+        number = Integer.parseInt(urlParams);
+    }
+    
 %>
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
@@ -31,6 +37,11 @@
         <title>Clothes Club!</title>
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.1/css/bootstrap.min.css">
         <link rel="stylesheet" href="styles.css">
+        <style type="text/css">
+            .red{
+                background-color: red;
+            }
+        </style>
     </head>
     <body>
         
@@ -61,7 +72,8 @@
       <!-- Example row of columns -->
         <div class="row">
             <!--<div class="col-md-6">-->
-                <h2>Users</h2>
+            <h3>Number is <% out.print(number);%></h3>
+                <h2>Users!</h2>
                 <table class="table table-striped">
                     <th>ID</th>
                     <th>First Name</th>
@@ -73,7 +85,11 @@
                     <th>Delete</th>
                 <!-- For loop to iterate through the users and print the data -->
                     <% for (int x=0 ; x < 5 ; x++) { %>
-                        <tr>
+                        <%if (number == x) {
+                            out.print("<tr class=\"red\">");
+                        } else {
+                            out.print("<tr>");
+                        }%>
                             <td><%out.print(x);%></td>
                             <td><%out.print(users[x].getFirstName());%></td>
                             <td><%out.print(users[x].getLastName());%></td>

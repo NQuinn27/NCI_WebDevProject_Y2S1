@@ -12,6 +12,8 @@ package webApp;
 
 public class User
 {
+        
+    private int identifier;
     private String firstName;
     private String lastName;
     private String dob;
@@ -22,6 +24,7 @@ public class User
         this.lastName = lastName;
         this.dob = dob;
         this.sex = sex;
+        this.identifier = IdGenerator.nextId();
     }
     
     public String getFirstName() {
@@ -55,4 +58,9 @@ public class User
     public void setSex(Sex sex) {
         this.sex = sex;
     }
+    
+    public int getIdentifier() {
+        return identifier;
+    }
+    
 }

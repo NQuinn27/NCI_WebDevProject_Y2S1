@@ -13,19 +13,13 @@
         or delegate to a java class. (Probably the latter to keep this page
         clean).
     */
-    User userOne = new User("Niall", "Quinn", "22/08/1988", Sex.MALE);
-    User userTwo = new User("John", "O'Shea", "dd/mm/yyyy", Sex.MALE);
-    User userThree = new User("Joe", "Bloggs", "dd/mm/yyyy", Sex.MALE);
-    User userFour = new User("Jane", "Bloggs", "dd/mm/yyyy", Sex.FEMALE);
-    User userFive = new User("John", "O'Shea", "dd/mm/yyyy", Sex.MALE);
-    
-    User[] users = {userOne,userTwo,userThree,userFour,userFive};
-    
-    String urlParams = request.getParameter("id");
-    int number = -1;
-    if (urlParams != null) {
-        number = Integer.parseInt(urlParams);
+    User user = (User)request.getAttribute("user");
+    if (user == null) {
+        //Deal with it!
+        System.out.println("No user");
     }
+    
+    System.out.println(user.getFirstName());
     
 %>
 
@@ -71,37 +65,14 @@
     <div class="container">
       <!-- Example row of columns -->
         <div class="row">
-            <!--<div class="col-md-6">-->
-            <h3>Number is <% out.print(number);%></h3>
-                <h2>Users!</h2>
-                <table class="table table-striped">
-                    <th>ID</th>
-                    <th>First Name</th>
-                    <th>Last Name</th>
-                    <th>Sex</th>
-                    <th>DOB</th>
-                    <th>Signup Date</th>
-                    <th>Edit</th>
-                    <th>Delete</th>
-                <!-- For loop to iterate through the users and print the data -->
-                    <% for (int x=0 ; x < 5 ; x++) { %>
-                        <%if (number == x) {
-                            out.print("<tr class=\"red\">");
-                        } else {
-                            out.print("<tr>");
-                        }%>
-                            <td><%out.print(x);%></td>
-                            <td><%out.print(users[x].getFirstName());%></td>
-                            <td><%out.print(users[x].getLastName());%></td>
-                            <td><%String sex = (users[x].getSex() == Sex.MALE) ? "Male" : "Female"; out.print(sex);%></td>
-                            <td><%out.print(users[x].getDob());%></td>
-                            <td><%out.print("dd/mm/yyyy");%></td>
-                            <td><a href="#">Edit</a></td>
-                            <td><a href="#">Delete</a></td>
-                        </tr>
-                    <% } %>
-                <table>
-                <p><a class="btn btn-default" href="#" role="button">Add New User &raquo;</a></p>
+            <%out.print("<a href=/NCI_WebDevProject_Y2S1/Users?id=" + user.getIdentifier()+ ">" + user.getIdentifier() + "</a>");%></td>
+            <h5><%out.print(user.getFirstName());%></h5>
+            <h5><%out.print(user.getLastName());%></h5>
+            <h5><%String sex = (user.getSex() == Sex.MALE) ? "Male" : "Female"; out.print(sex);%></h5>
+            <h5><%out.print(user.getDob());%></h5>
+            <h5><%out.print("dd/mm/yyyy");%></h5>
+            <h5><a href="#">Edit</a></h5>
+            <h5><a href="#">Delete</a></h5>
         </div>
         <hr>
         <footer>
@@ -114,3 +85,4 @@
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.1/js/bootstrap.min.js"></script>
     </body>
 </html>
+
