@@ -4,29 +4,13 @@
     Author     : niallquinn
 --%>
 
+<%@page import="webApp.ApplicationController"%>
 <%@page import="webApp.Sex"%>
 <%@ page import="webApp.User" %>
 
 <%
-    /*Adding Dummy Data
-        Here we will either do the XML transformation to populate arrays
-        or delegate to a java class. (Probably the latter to keep this page
-        clean).
-    */
-    User userOne = new User("Niall", "Quinn", "22/08/1988", Sex.MALE);
-    User userTwo = new User("John", "O'Shea", "dd/mm/yyyy", Sex.MALE);
-    User userThree = new User("Joe", "Bloggs", "dd/mm/yyyy", Sex.MALE);
-    User userFour = new User("Jane", "Bloggs", "dd/mm/yyyy", Sex.FEMALE);
-    User userFive = new User("John", "O'Shea", "dd/mm/yyyy", Sex.MALE);
-    
-    User[] users = {userOne,userTwo,userThree,userFour,userFive};
-    
-    String urlParams = request.getParameter("id");
-    int number = -1;
-    if (urlParams != null) {
-        number = Integer.parseInt(urlParams);
-    }
-    
+    //Get app controller singleton
+    ApplicationController controller = ApplicationController.getShared();
 %>
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
@@ -42,66 +26,50 @@
                 background-color: red;
             }
         </style>
+        <script src="//code.jquery.com/jquery-1.11.0.min.js"></script>
+        <script>
+        </script>
     </head>
     <body>
-        
         <nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
-        <div class="container">
-            <div class="navbar-header">
-                <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
-                    <span class="sr-only">Toggle navigation</span>
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                </button>
-                <a class="navbar-brand" href="#">Clothing Club</a>
+            <div class="container">
+                <div class="navbar-header">
+                    <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+                        <span class="sr-only">Toggle navigation</span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                    </button>
+                    <a class="navbar-brand" href="#">Clothing Club</a>
+                </div>
+                <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+                    <ul class="nav navbar-nav">
+                    <li class="active"><a href="http://localhost:8080/clothesclub">Home <span class="sr-only">(current)</span></a></li>
+                    <li><a href="http://localhost:8080/clothesclub/usersList.jsp">Users</a></li>
+                    <li><a href="http://localhost:8080/clothesclub/packagesList.jsp">Packages</a></li>
+                    </ul>
+                </div><!-- /.navbar-collapse -->
             </div>
-        </div>
-    </nav>
+        </nav>
 
     <!-- Main jumbotron for a primary marketing message or call to action -->
     <div class="jumbotron">
         <div class="container">
             <h1>Welcome to the Clothing Club!</h1>
             <p>Are you a lover of fashion? Sign up now to avail of a new bespoke package each month. <a href="#">Signup is easy</a></p>
-            <p><a class="btn btn-primary btn-lg" href="#" role="button">Learn more &raquo;</a></p>
+            <p><a class="btn btn-primary btn-lg" href="http://localhost:8080/clothesclub/NewUser" role="button">Sign Up Now &raquo;</a></p>
         </div>
     </div>
 
     <div class="container">
       <!-- Example row of columns -->
         <div class="row">
-            <!--<div class="col-md-6">-->
-            <h3>Number is <% out.print(number);%></h3>
-                <h2>Users!</h2>
-                <table class="table table-striped">
-                    <th>ID</th>
-                    <th>First Name</th>
-                    <th>Last Name</th>
-                    <th>Sex</th>
-                    <th>DOB</th>
-                    <th>Signup Date</th>
-                    <th>Edit</th>
-                    <th>Delete</th>
-                <!-- For loop to iterate through the users and print the data -->
-                    <% for (int x=0 ; x < 5 ; x++) { %>
-                        <%if (number == x) {
-                            out.print("<tr class=\"red\">");
-                        } else {
-                            out.print("<tr>");
-                        }%>
-                            <td><%out.print(x);%></td>
-                            <td><%out.print(users[x].getFirstName());%></td>
-                            <td><%out.print(users[x].getLastName());%></td>
-                            <td><%String sex = (users[x].getSex() == Sex.MALE) ? "Male" : "Female"; out.print(sex);%></td>
-                            <td><%out.print(users[x].getDob());%></td>
-                            <td><%out.print("dd/mm/yyyy");%></td>
-                            <td><a href="#">Edit</a></td>
-                            <td><a href="#">Delete</a></td>
-                        </tr>
-                    <% } %>
-                <table>
-                <p><a class="btn btn-default" href="#" role="button">Add New User &raquo;</a></p>
+            <div class="col-md-6">
+                <p><a class="btn btn-primary btn-lg" href="http://localhost:8080/clothesclub/usersList.jsp" role="button">View All Users &raquo;</a></p>
+            </div>
+            <div class="col-md-6">
+                <p><a class="btn btn-primary btn-lg" href="http://localhost:8080/clothesclub/packagesList.jsp" role="button">View All Packages &raquo;</a></p>
+            </div>
         </div>
         <hr>
         <footer>

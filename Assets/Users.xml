@@ -1,0 +1,85 @@
+<?xml version="1.0"?>
+<?xml-stylesheet href="userspage.xsl" type="text/xsl"?>
+<?xmlns href="Users.xsd"?>
+<!--
+Copyright 2014 niallquinn
+Users.xml created Dec 4, 2014
+WebDevProject
+-->
+<users>
+    <user>
+        <id>0</id>
+        <firstName>Niall</firstName>
+        <lastName>Quinn</lastName>
+        <dob>22/08/1988</dob>
+        <sex>male</sex>
+        <style>formal</style>
+        <array name="packageIds">
+            <id>0</id>
+            <id>0</id>
+            <id>0</id>
+            <id>0</id>
+            <id>0</id>
+        </array>
+    </user>
+    <user>
+        <id>1</id>
+        <firstName>John</firstName>
+        <lastName>O;Shea</lastName>
+        <dob>00/00/0000</dob>
+        <sex>male</sex>
+        <style>formal</style>
+        <array name="packageIds">
+            <id>0</id>
+            <id>0</id>
+            <id>0</id>
+            <id>0</id>
+            <id>0</id>
+        </array>
+    </user>
+    <user>
+        <id>2</id>
+        <firstName>Joe</firstName>
+        <lastName>Bloggs</lastName>
+        <dob>00/00/0000</dob>
+        <sex>male</sex>
+        <style>teen</style>
+        <array name="packageIds">
+            <id>0</id>
+            <id>0</id>
+            <id>0</id>
+            <id>0</id>
+            <id>0</id>
+        </array>
+    </user>
+    <user>
+        <id>3</id>
+        <firstName>Jane</firstName>
+        <lastName>Bloggs</lastName>
+        <dob>00/00/0000</dob>
+        <sex>female</sex>
+        <style>formal</style>
+        <array name="packageIds">
+            <id>0</id>
+            <id>0</id>
+            <id>0</id>
+            <id>0</id>
+            <id>0</id>
+        </array>
+    </user>
+    <user>
+        <id>4</id>
+        <firstName>John</firstName>
+        <lastName>Smith</lastName>
+        <dob>00/00/0000</dob>
+        <sex>male</sex>
+        <style>teen</style>
+        <array name="packageIds">
+            <id>0</id>
+            <id>0</id>
+            <id>0</id>
+            <id>0</id>
+            <id>0</id>
+        </array>
+    </user>
+</users>

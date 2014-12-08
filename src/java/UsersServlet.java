@@ -5,12 +5,17 @@
  */
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.xml.bind.JAXBException;
 import webApp.ApplicationController;
+import webApp.Sex;
+import webApp.Style;
 import webApp.User;
 
 /**
@@ -42,17 +47,27 @@ public class UsersServlet extends HttpServlet
         if (request.getParameter("id") != null){
             userId = Integer.parseInt(request.getParameter("id"));
         }
+        String name = request.getParameter("name");
         
         System.out.println("Id = " + userId);
         
         ApplicationController controller;
-        controller = ApplicationController.getShared();
-        User u = controller.getUserList().get(0);
+        try {
+            controller = ApplicationController.getShared();
+        } catch (Exception e) {
+            return;
+        }
         
+        
+        User u = null;
+        if (userId < controller.getUserList().size()) {
+            u = controller.getUserList().get(userId);
+        }
+        
+                
         System.out.println("User Id = " + u.getIdentifier());
         if (userId == -1 || u == null) {
-            request.setAttribute("list", controller.getUserList());
-            request.getRequestDispatcher("/allUsers.jsp").forward(request, response);
+            //404
         } else {
             request.setAttribute("user", u);
             request.getRequestDispatcher("/user.jsp").forward(request, response);

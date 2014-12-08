@@ -1,0 +1,215 @@
+<packages>
+    <!--
+    **KEY FOR IMAGE URI**
+    Teen Items
+        to = topItem
+        s = shirtItem
+        t = trousersItem
+        sh = shoes
+        a = accessories
+
+    Formal Items
+        ja = jacketItem
+        fs = fshirtItem (formal shirt)
+        p = pantsItem
+        fsh = fshoes (formal shoes)
+        tie = tie
+
+    URI Structure
+    [item]_[month].jpg
+    eg. to_jan.jpg = topItem for the month of January
+
+     -->
+    <package>
+        <month>January</month>
+        <style>Teen</style>
+        <items>
+            <clothingItem>
+                <type>topItem</type>
+                <description>Sweater</description>
+                <imageUri>/img/to_jan.jpg</imageUri>
+            </clothingItem>
+            <clothingItem>
+                <type>shirtItem</type>
+                <description>Short-sleeved shirt</description>
+                <imageUri>/img/s_jan.jpg</imageUri>
+            <style></style>
+            </clothingItem>
+            <clothingItem>
+                <type>trousersItem</type>
+                <description>Denim trousars</description>
+                <imageUri>/img/t_jan.jpg</imageUri>
+            </clothingItem>
+            <clothingItem>
+                <type>shoes</type>
+                <description>Converse</description>
+                <imageUri>/img/sh_jan.jpg</imageUri>
+            </clothingItem>
+            <clothingItem>
+                <type>accessories</type>
+                <description>Beanie Hat</description>
+                <imageUri>/img/a_jan.jpg</imageUri>
+            </clothingItem>
+        </items>
+    </package>
+    <package>
+        <month>February</month>
+        <style>Teen</style>
+        <items>
+            <clothingItem>
+                <type>topItem</type>
+                <description>Sweater</description>
+                <imageUri>/img/to_feb.jpg</imageUri>
+            </clothingItem>
+            <clothingItem>
+                <type>shirtItem</type>
+                <description>Casual Shirt</description>
+                <imageUri>/img/s_feb.jpg</imageUri>
+            <style></style>
+            </clothingItem>
+            <clothingItem>
+                <type>trousersItem</type>
+                <description>Denim trousars</description>
+                <imageUri>/img/j_feb.jpg</imageUri>
+            </clothingItem>
+            <clothingItem>
+                <type>shoes</type>
+                <description>Vans</description>
+                <imageUri>/img/sh_feb.jpg</imageUri>
+            </clothingItem>
+            <clothingItem>
+                <type>accessories</type>
+                <description>Bracelet</description>
+                <imageUri>/img/a_feb.jpg</imageUri>
+            </clothingItem>
+        </items>
+    </package>
+    <package>
+        <month>March</month>
+        <style>Teen</style>
+        <items>
+            <clothingItem>
+                <type>topItem</type>
+                <description>Sweater</description>
+                <imageUri>/img/to_mar.jpg</imageUri>
+            </clothingItem>
+            <clothingItem>
+                <type>shirtItem</type>
+                <description>Casual Shirt</description>
+                <imageUri>/img/s_mar.jpg</imageUri>
+            <style></style>
+            </clothingItem>
+            <clothingItem>
+                <type>trousersItem</type>
+                <description>Chinos</description>
+                <imageUri>/img/t_mar.jpg</imageUri>
+            </clothingItem>
+            <clothingItem>
+                <type>shoes</type>
+                <description>Shoes</description>
+                <imageUri>/img/sh_mar.jpg</imageUri>
+            </clothingItem>
+            <clothingItem>
+                <type>accessories</type>
+                <description>Pendent</description>
+                <imageUri>/img/a_mar.jpg</imageUri>
+            </clothingItem>
+        </items>
+    </package>
+    <package>
+        <month>January</month>
+        <style>Formal</style>
+        <items>
+            <clothingItem>
+                <type>topItem</type>
+                <description>Jacket</description>
+                <imageUri>/img/ja_jan.jpg</imageUri>
+            </clothingItem>
+            <clothingItem>
+                <type>shirtItem</type>
+                <description>Cotton Shirt</description>
+                <imageUri>/img/fs_jan.jpg</imageUri>
+            <style></style>
+            </clothingItem>
+            <clothingItem>
+                <type>trousersItem</type>
+                <description>Pants</description>
+                <imageUri>/img/p_jan.jpg</imageUri>
+            </clothingItem>
+            <clothingItem>
+                <type>shoes</type>
+                <description>Laced Shoes</description>
+                <imageUri>/img/fsh_jan.jpg</imageUri>
+            </clothingItem>
+            <clothingItem>
+                <type>accessories</type>
+                <description>Silk Tie</description>
+                <imageUri>/img/tie_jan.jpg</imageUri>
+            </clothingItem>
+        </items>
+    </package>
+     <package>
+        <month>February</month>
+        <style>Formal</style>
+        <items>
+            <clothingItem>
+                <type>topItem</type>
+                <description>Jacket</description>
+                <imageUri>/img/ja_feb.jpg</imageUri>
+            </clothingItem>
+            <clothingItem>
+                <type>shirtItem</type>
+                <description>Cotton Shirt</description>
+                <imageUri>/img/fs_feb.jpg</imageUri>
+            <style></style>
+            </clothingItem>
+            <clothingItem>
+                <type>trousersItem</type>
+                <description>Slacks</description>
+                <imageUri>/img/p_feb.jpg</imageUri>
+            </clothingItem>
+            <clothingItem>
+                <type>shoes</type>
+                <description>Black Shoes</description>
+                <imageUri>/img/fsh_feb.jpg</imageUri>
+            </clothingItem>
+            <clothingItem>
+                <type>accessories</type>
+                <description>Silk Tie</description>
+                <imageUri>/img/tie_feb.jpg</imageUri>
+            </clothingItem>
+        </items>
+    </package>
+     <package>
+        <month>March</month>
+        <style>Formal</style>
+        <items>
+            <clothingItem>
+                <type>topItem</type>
+                <description>Jacket</description>
+                <imageUri>/img/ja_mar.jpg</imageUri>
+            </clothingItem>
+            <clothingItem>
+                <type>shirtItem</type>
+                <description>Cotton Shirt</description>
+                <imageUri>/img/fs_mar.jpg</imageUri>
+            <style></style>
+            </clothingItem>
+            <clothingItem>
+                <type>trousersItem</type>
+                <description>Tweed Pants</description>
+                <imageUri>/img/p_mar.jpg</imageUri>
+            </clothingItem>
+            <clothingItem>
+                <type>shoes</type>
+                <description>Brown Shoes</description>
+                <imageUri>/img/fsh_mar.jpg</imageUri>
+            </clothingItem>
+            <clothingItem>
+                <type>accessories</type>
+                <description>Silk Tie</description>
+                <imageUri>/img/tie_mar.jpg</imageUri>
+            </clothingItem>
+        </items>
+    </package>
+  </packages>

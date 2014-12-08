@@ -13,10 +13,10 @@ package webApp;
 public class ClothingItem
 {
     private String imageUri;
-    private String title;
+    private String description;
     private String type;
-    private String style;
-    private String colour;
+    
+    public ClothingItem(){}
     
     public String getImageUri() {
         return imageUri;
@@ -26,12 +26,12 @@ public class ClothingItem
         this.imageUri = imageUri;
     }
     
-    public String getTitle() {
-        return title;
+    public String getDescription() {
+        return description;
     }
     
-    public void setTitle(String title) {
-        this.title = title;
+    public void setDescription(String description) {
+        this.description = description;
     }
     
     public void setType(String type) {
@@ -42,19 +42,4 @@ public class ClothingItem
         return type;
     }
     
-    public void setStyle(String style) {
-        this.style = style;
-    }
-    
-    public String getStyle() {
-        return style;
-    }
-    
-    public void setColour(String colour) {
-        this.colour = colour;
-    }
-    
-    public String getColour() {
-        return colour;
-    }
 }

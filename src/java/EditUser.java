@@ -4,12 +4,12 @@
  * WebDevProject
  */
 import java.io.IOException;
-import java.io.PrintWriter;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.xml.bind.JAXBException;
 import webApp.ApplicationController;
 import webApp.User;
 
@@ -32,9 +32,10 @@ public class EditUser extends HttpServlet
      * @param response servlet response
      * @throws ServletException if a servlet-specific error occurs
      * @throws IOException if an I/O error occurs
+     * @throws javax.xml.bind.JAXBException
      */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
-            throws ServletException, IOException
+            throws ServletException, IOException, JAXBException
     {
         response.setContentType("text/html;charset=UTF-8");
         int userId=-1;

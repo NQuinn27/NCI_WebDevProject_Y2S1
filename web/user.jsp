@@ -4,6 +4,7 @@
     Author     : niallquinn
 --%>
 
+<%@page import="webApp.Style"%>
 <%@page import="webApp.Sex"%>
 <%@ page import="webApp.User" %>
 
@@ -13,14 +14,14 @@
         or delegate to a java class. (Probably the latter to keep this page
         clean).
     */
-    User user = (User)request.getAttribute("user");
-    if (user == null) {
+    User u = (User)request.getAttribute("user");
+    if (u == null) {
         //Deal with it!
         System.out.println("No user");
     }
     
-    System.out.println(user.getFirstName());
-    
+    System.out.println(u.getFirstName());
+//    int id = u.getIdentifier();
 %>
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
@@ -40,18 +41,25 @@
     <body>
         
         <nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
-        <div class="container">
-            <div class="navbar-header">
-                <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
-                    <span class="sr-only">Toggle navigation</span>
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                </button>
-                <a class="navbar-brand" href="#">Clothing Club</a>
+            <div class="container">
+                <div class="navbar-header">
+                    <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+                        <span class="sr-only">Toggle navigation</span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                    </button>
+                    <a class="navbar-brand" href="#">Clothing Club</a>
+                </div>
+                <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+                    <ul class="nav navbar-nav">
+                    <li><a href="http://localhost:8080/clothesclub">Home <span class="sr-only">(current)</span></a></li>
+                    <li><a href="http://localhost:8080/clothesclub/usersList.jsp">Users</a></li>
+                    <li><a href="http://localhost:8080/clothesclub/packagesList.jsp">Packages</a></li>
+                    </ul>
+                </div><!-- /.navbar-collapse -->
             </div>
-        </div>
-    </nav>
+        </nav>
 
     <!-- Main jumbotron for a primary marketing message or call to action -->
     <div class="jumbotron">
@@ -65,14 +73,24 @@
     <div class="container">
       <!-- Example row of columns -->
         <div class="row">
-            <%out.print("<a href=/NCI_WebDevProject_Y2S1/Users?id=" + user.getIdentifier()+ ">" + user.getIdentifier() + "</a>");%></td>
-            <h5><%out.print(user.getFirstName());%></h5>
-            <h5><%out.print(user.getLastName());%></h5>
-            <h5><%String sex = (user.getSex() == Sex.MALE) ? "Male" : "Female"; out.print(sex);%></h5>
-            <h5><%out.print(user.getDob());%></h5>
-            <h5><%out.print("dd/mm/yyyy");%></h5>
-            <h5><a href="#">Edit</a></h5>
-            <h5><a href="#">Delete</a></h5>
+            <div class="centerBox">
+                <h5><b>First Name:</b> <%out.print(u.getFirstName());%></h5>
+                <h5><b>Last Name:</b> <%out.print(u.getLastName());%></h5>
+                <h5><b>Date of Birth: </b> <%out.print(u.getDob());%></h5>
+                <h5><b>Sex: </b>
+                <%if (u.getSex() == Sex.MALE) {
+                    out.print("Male");
+                } else {
+                    out.print("Female");
+                }%></h5>
+                <h5><b>Prefferred Style </b>
+                <%if (u.getStyle() == Style.FORMAL) {
+                    out.print("Formal");
+                } else {
+                    out.print("Teen");
+                }%></h5>
+            </div>
+            
         </div>
         <hr>
         <footer>
