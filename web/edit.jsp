@@ -13,7 +13,7 @@
     }
     User u = null;
     if (id < controller.getUserList().size()) {
-        u = controller.getUserById(id);
+        u = controller.getUserList().get(id);
     }
     if (u == null) {
         return;
