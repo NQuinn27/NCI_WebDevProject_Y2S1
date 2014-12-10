@@ -83,7 +83,7 @@ public class APIGetUser extends HttpServlet
             Logger.getLogger(APIGetUser.class.getName()).log(Level.SEVERE, null, ex);
             return;
         }
-        User u = controller.getUserList().get(0);
+        User u = controller.getUserList().get(userId);
         
         PrintWriter out = response.getWriter();
         out.println(u.JSONRepresentation());

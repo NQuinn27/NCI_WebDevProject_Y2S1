@@ -28,10 +28,14 @@
             }
         </style>
         <script src="//code.jquery.com/jquery-1.11.0.min.js"></script>
-        <script>
-        </script>
     </head>
     <body>
+        
+        <div id="userDetails">
+            <h1 id="boxUserTitle"></h1>
+            <h1 id="boxUsername"></h1>
+            <h2 id="boxUserDob"></h2>
+        </div>
         
         <nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
             <div class="container">
@@ -78,10 +82,10 @@
                     <th>Delete</th>
                 <!-- For loop to iterate through the users and print the data -->
                     <% for (int x=0 ; x < controller.getUserList().size() ; x++) { %>
-                        <tr>
+                        <tr id="tableRow">
                             <%String link = "http://localhost:8080/clothesclub/Users?id=" + x ;%>
                             <td>
-                                <a href="<%out.print(link);%>"><%out.print(x);%></a>
+                                <a id="ident" href="<%out.print(link);%>"><%out.print(x);%></a>
                             </td>
                             <td><%out.print(controller.getUserList().get(x).getFirstName());%></td>
                             <td><%out.print(controller.getUserList().get(x).getLastName());%></td>
@@ -104,7 +108,25 @@
         </footer>
     </div> <!-- /container -->
 
-        
+    <script>
+        //<!-- AJAX IMPLEMENTATION -->
+        $( "tr" ).hover(
+            function() {
+                var identifier = $(this).find("#ident").html();
+                $(document).find("#userDetails").css("display","inline-block");
+                var identifier = $(this).find("#ident").text();
+                var link = "http://localhost:8080/clothesclub/API/User?id=" + identifier;
+                $.ajax({url:link,success:function(result){
+                    var uo = jQuery.parseJSON(result);
+                    $(document).find("#userDetails").find("#boxUserTitle").text("User Details");
+                    $(document).find("#userDetails").find("#boxUsername").text(uo.firstName + " " + uo.lastName);
+                    $(document).find("#userDetails").find("#boxUserDob").text(uo.dob);
+                }});
+            }, function() {
+                $( document ).find( "#userDetails" ).css("display","none");
+            }
+        );
+    </script> 
         
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.1/js/bootstrap.min.js"></script>
     </body>

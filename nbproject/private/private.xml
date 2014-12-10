@@ -3,15 +3,23 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/Users/niallquinn/Developer/Java/clothesclub/clothesclub/web/newUser.jsp</file>
-            <file>file:/Users/niallquinn/Developer/Java/clothesclub/clothesclub/web/index.jsp</file>
-            <file>file:/Users/niallquinn/Developer/Java/clothesclub/clothesclub/Assets/userspage.xsl</file>
+            <file>file:/Users/niallquinn/Developer/Java/clothesclub/clothesclub/src/java/webApp/ClothingItem.java</file>
             <file>file:/Users/niallquinn/Developer/Java/clothesclub/clothesclub/web/styles.css</file>
-            <file>file:/Users/niallquinn/Developer/Java/clothesclub/clothesclub/src/java/UsersServlet.java</file>
+            <file>file:/Users/niallquinn/Developer/Java/clothesclub/clothesclub/src/java/webApp/ClothingPackage.java</file>
             <file>file:/Users/niallquinn/Developer/Java/clothesclub/clothesclub/src/java/NewUserServlet.java</file>
+            <file>file:/Users/niallquinn/Developer/Java/clothesclub/clothesclub/web/edit.jsp</file>
+            <file>file:/Users/niallquinn/Developer/Java/clothesclub/clothesclub/web/user.jsp</file>
+            <file>file:/Users/niallquinn/Developer/Java/clothesclub/clothesclub/Assets/Packages.xml</file>
+            <file>file:/Users/niallquinn/Developer/Java/clothesclub/clothesclub/src/java/webApp/User.java</file>
             <file>file:/Users/niallquinn/Developer/Java/clothesclub/clothesclub/src/java/webApp/ApplicationController.java</file>
             <file>file:/Users/niallquinn/Developer/Java/clothesclub/clothesclub/src/java/AllUsers.java</file>
+            <file>file:/Users/niallquinn/Developer/Java/clothesclub/clothesclub/web/newUser.jsp</file>
+            <file>file:/Users/niallquinn/Developer/Java/clothesclub/clothesclub/src/java/DeleteUser.java</file>
+            <file>file:/Users/niallquinn/Developer/Java/clothesclub/clothesclub/src/java/UpdateUser.java</file>
+            <file>file:/Users/niallquinn/Developer/Java/clothesclub/clothesclub/src/java/UsersServlet.java</file>
+            <file>file:/Users/niallquinn/Developer/Java/clothesclub/clothesclub/src/java/EditUser.java</file>
             <file>file:/Users/niallquinn/Developer/Java/clothesclub/clothesclub/src/java/APIGetUser.java</file>
+            <file>file:/Users/niallquinn/Developer/Java/clothesclub/clothesclub/web/usersList.jsp</file>
         </group>
     </open-files>
 </project-private>

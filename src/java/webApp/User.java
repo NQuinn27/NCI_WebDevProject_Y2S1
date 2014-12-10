@@ -14,7 +14,7 @@ import javax.xml.bind.annotation.XmlAttribute;
 import javax.xml.bind.annotation.XmlElement;
 import javax.xml.bind.annotation.XmlRootElement;
 
-@XmlRootElement
+
 public class User
 {
         
@@ -31,12 +31,12 @@ public class User
         this.lastName = lastName;
         this.dob = dob;
         this.sex = sex;
-        this.identifier = IdGenerator.nextId();
+        
         this.style = style;
         packageIds = new int[10];
     }
     
-    @XmlElement
+    
     public String getFirstName() {
         return firstName;
     }
@@ -45,7 +45,7 @@ public class User
         this.firstName = firstName;
     }
     
-    @XmlElement
+    
     public String getLastName() {
         return lastName;
     }
@@ -54,7 +54,7 @@ public class User
         this.lastName = lastName;
     }
     
-    @XmlElement
+    
     public String getDob() {
         return dob;
     }
@@ -63,7 +63,7 @@ public class User
         this.dob = dob;
     }
     
-    @XmlElement
+    
     public Sex getSex() {
         return sex;
     }
@@ -80,7 +80,7 @@ public class User
         this.style = style;
     }
     
-    @XmlAttribute
+    
     public void setIdentifier(int identifier) {
         this.identifier = identifier;
     }
@@ -91,10 +91,9 @@ public class User
     
     public String JSONRepresentation() {
         String o = "{";
-        o = o + "\"firstName\":" + firstName + ",";
-        o = o + "\"lastName\":" + lastName + ",";
-        o = o + "\"dob\":" + dob + ",";
-        o = o + "\"sex\":" + sex;
+        o = o + "\"firstName\":\"" + firstName + "\",";
+        o = o + "\"lastName\":\"" + lastName + "\",";
+        o = o + "\"dob\":\"" + dob + "\"";
         o = o + "}";
         return o;
     }
