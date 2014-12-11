@@ -13,6 +13,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.xml.bind.JAXBException;
+import javax.xml.transform.TransformerConfigurationException;
 import webApp.ApplicationController;
 import webApp.Sex;
 import webApp.Style;
@@ -89,12 +90,18 @@ public class NewUserServlet extends HttpServlet
         Sex _sex = sex == 0 ? Sex.MALE : Sex.FEMALE;
         Style _style = style == 0 ? Style.FORMAL : Style.TEEN;
         
-        User u = new User(firstName,lastName,"",_sex,_style);
+        User u = new User(firstName,lastName,dob,_sex,_style);
         
         try
         {
-            ApplicationController.getShared().getUserList().add(u);
+            ApplicationController.getShared().addUser(u);
         } catch (JAXBException ex)
+        {
+            Logger.getLogger(NewUserServlet.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (TransformerConfigurationException ex)
+        {
+            Logger.getLogger(NewUserServlet.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (ClassNotFoundException ex)
         {
             Logger.getLogger(NewUserServlet.class.getName()).log(Level.SEVERE, null, ex);
         }

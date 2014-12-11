@@ -53,6 +53,7 @@
                     <li><a href="http://localhost:8080/clothesclub">Home</a></li>
                     <li class="active"><a href="http://localhost:8080/clothesclub/usersList.jsp">Users <span class="sr-only">(current)</span></a></li>
                     <li><a href="http://localhost:8080/clothesclub/packagesList.jsp">Packages</a></li>
+                    <li><a href="http://localhost:8080/clothesclub/AllUsers">All Users from XSLT</a></li>
                     </ul>
                 </div><!-- /.navbar-collapse -->
             </div>
@@ -61,7 +62,7 @@
     <div class="jumbotron">
         <div class="container">
             <h1>Welcome to the Clothing Club!</h1>
-            <p>Are you a lover of fashion? Sign up now to avail of a new bespoke package each month. <a href="#">Signup is easy</a></p>
+            <p>Are you a lover of fashion? Sign up now to avail of a new bespoke package each month. <a href="http://localhost:8080/clothesclub/NewUser">Signup is easy</a></p>
             <p><a class="btn btn-primary btn-lg" href="http://localhost:8080/clothesclub/NewUser" role="button">Sign Up Now &raquo;</a></p>
         </div>
     </div>

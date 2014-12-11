@@ -33,6 +33,7 @@
                     <li class="active"><a href="http://localhost:8080/clothesclub">Home <span class="sr-only">(current)</span></a></li>
                     <li><a href="http://localhost:8080/clothesclub/usersList.jsp">Users</a></li>
                     <li><a href="http://localhost:8080/clothesclub/packagesList.jsp">Packages</a></li>
+                    <li><a href="http://localhost:8080/clothesclub/AllUsers">All Users from XSLT</a></li>
                     </ul>
                 </div><!-- /.navbar-collapse -->
             </div>

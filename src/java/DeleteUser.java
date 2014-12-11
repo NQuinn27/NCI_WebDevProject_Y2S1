@@ -39,9 +39,10 @@ public class DeleteUser extends HttpServlet
      * @param response servlet response
      * @throws ServletException if a servlet-specific error occurs
      * @throws IOException if an I/O error occurs
+     * @throws java.lang.ClassNotFoundException
      */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
-            throws ServletException, IOException
+            throws ServletException, IOException, ClassNotFoundException
     {
         int id = -1;
         id = Integer.parseInt(request.getParameter("id"));
@@ -72,12 +73,19 @@ public class DeleteUser extends HttpServlet
      * @param response servlet response
      * @throws ServletException if a servlet-specific error occurs
      * @throws IOException if an I/O error occurs
+     * @throws java.lang.ClassNotFoundException
      */
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException
     {
-        processRequest(request, response);
+        try
+        {
+            processRequest(request, response);
+        } catch (ClassNotFoundException ex)
+        {
+            Logger.getLogger(DeleteUser.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }
 
     /**
@@ -92,7 +100,13 @@ public class DeleteUser extends HttpServlet
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException
     {
-        processRequest(request, response);
+        try
+        {
+            processRequest(request, response);
+        } catch (ClassNotFoundException ex)
+        {
+            Logger.getLogger(DeleteUser.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }
 
     /**

@@ -35,9 +35,10 @@ public class EditUser extends HttpServlet
      * @throws ServletException if a servlet-specific error occurs
      * @throws IOException if an I/O error occurs
      * @throws javax.xml.bind.JAXBException
+     * @throws java.lang.ClassNotFoundException
      */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
-            throws ServletException, IOException, JAXBException
+            throws ServletException, IOException, JAXBException, ClassNotFoundException
     {
         response.setContentType("text/html;charset=UTF-8");
         int userId=-1;
@@ -78,6 +79,9 @@ public class EditUser extends HttpServlet
         } catch (JAXBException ex)
         {
             Logger.getLogger(EditUser.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (ClassNotFoundException ex)
+        {
+            Logger.getLogger(EditUser.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
 
@@ -97,6 +101,9 @@ public class EditUser extends HttpServlet
         {
             processRequest(request, response);
         } catch (JAXBException ex)
+        {
+            Logger.getLogger(EditUser.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (ClassNotFoundException ex)
         {
             Logger.getLogger(EditUser.class.getName()).log(Level.SEVERE, null, ex);
         }

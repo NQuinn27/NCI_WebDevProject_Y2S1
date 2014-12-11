@@ -14,9 +14,20 @@ import org.w3c.dom.Element;
 import javax.xml.parsers.DocumentBuilder;
 import javax.xml.parsers.DocumentBuilderFactory;
 import javax.xml.parsers.ParserConfigurationException;
+import javax.xml.transform.OutputKeys;
+import javax.xml.transform.Transformer;
+import javax.xml.transform.TransformerConfigurationException;
+import javax.xml.transform.TransformerException;
+import javax.xml.transform.TransformerFactory;
+import javax.xml.transform.dom.DOMSource;
+import javax.xml.transform.stream.StreamResult;
+import org.w3c.dom.Node;
 import org.w3c.dom.NodeList;
 import org.xml.sax.SAXException;
-
+import org.xmldb.api.DatabaseManager;
+import org.xmldb.api.base.Database;
+import org.xmldb.api.modules.XMLResource;
+import org.xmldb.api.base.*;
 /**
  *
  * @author niallquinn
@@ -26,7 +37,7 @@ public class ApplicationController
     //Singleton app controller
     private static ApplicationController sharedController;
     
-    public static ApplicationController getShared() throws JAXBException {
+    public static ApplicationController getShared() throws JAXBException, ClassNotFoundException {
         if (sharedController == null) {
             sharedController = new ApplicationController();
             sharedController.readUsersFromXML();
@@ -47,6 +58,11 @@ public class ApplicationController
         return users;
     }
     
+    public void addUser(User u) throws TransformerConfigurationException {
+        users.add(u);
+        writeStateToXML();
+    }
+    
     public ArrayList<ClothingPackage> getPackagesList() {
         return clothingPackages;
     }
@@ -64,26 +80,48 @@ public class ApplicationController
         return null;
     }
     
-    public void readUsersFromXML() throws JAXBException {
+    public void readUsersFromXML() throws JAXBException, ClassNotFoundException {
         
         users = new ArrayList<>();
-        
-        File usersFile = new File("/Users/niallquinn/Developer/Java/clothesclub/clothesclub/Assets/Users.xml");
-        DocumentBuilderFactory dbf = DocumentBuilderFactory.newInstance();
-        Document dom = null;
-	try {
-            DocumentBuilder db = dbf.newDocumentBuilder();
-            dom = db.parse("/Users/niallquinn/Developer/Java/clothesclub/clothesclub/Assets/Users.xml");
 
-	}catch(ParserConfigurationException | SAXException | IOException pce) {
-	}
+        String URI = "xmldb:exist://localhost:8444/exist/xmlrpc";
+        String driver = "org.exist.xmldb.DatabaseImpl";
+
+        XMLResource res = null;
+        Node resNode = null;
+//        File usersFile = new File("/Users/niallquinn/Developer/Java/clothesclub/clothesclub/Assets/Users.xml");
+//        DocumentBuilderFactory dbf = DocumentBuilderFactory.newInstance();
+        Document dom = null;
         
+        try {
+            Class cl = Class.forName(driver);
+            Database database = (Database) cl.newInstance();
+            DatabaseManager.registerDatabase(database);
+
+            // get the collection
+            Collection col = (Collection) DatabaseManager.getCollection(URI + "/db/clothesclub", "admin", "");
+
+
+            col.setProperty(OutputKeys.INDENT, "no");
+            res = (XMLResource)col.getResource("Users.xml");
+
+            resNode = res.getContentAsDOM();
+
+            dom = (Document) resNode;
+        }catch (Exception e) {
+            System.err.println("Error Document: "+e.getMessage());
+        }
+        
+        if (dom == null) {
+            return;
+        }
         //get the root element
 	Element docEle = dom.getDocumentElement();
 
 	NodeList nl = docEle.getElementsByTagName("user");
+        int len = nl.getLength();
 	if(nl != null && nl.getLength() > 0) {
-            for(int i = 0 ; i < nl.getLength();i++) {
+            for(int i = 0 ; i < nl.getLength() ; i++) {
 		//get the user element
 		Element el = (Element)nl.item(i);
 		//get the User object
@@ -97,15 +135,47 @@ public class ApplicationController
         
         clothingPackages = new ArrayList<>();
         
-        File usersFile = new File("/Users/niallquinn/Developer/Java/clothesclub/clothesclub/Assets/Packages.xml");
-        DocumentBuilderFactory dbf = DocumentBuilderFactory.newInstance();
-        Document dom = null;
-	try {
-            DocumentBuilder db = dbf.newDocumentBuilder();
-            dom = db.parse("/Users/niallquinn/Developer/Java/clothesclub/clothesclub/Assets/Packages.xml");
+//        File usersFile = new File("/Users/niallquinn/Developer/Java/clothesclub/clothesclub/Assets/Packages.xml");
+//        DocumentBuilderFactory dbf = DocumentBuilderFactory.newInstance();
+//        Document dom = null;
+//	try {
+//            DocumentBuilder db = dbf.newDocumentBuilder();
+//            dom = db.parse("/Users/niallquinn/Developer/Java/clothesclub/clothesclub/Assets/Packages.xml");
+//
+//	}catch(ParserConfigurationException | SAXException | IOException pce) {
+//	}
+        
+        String URI = "xmldb:exist://localhost:8444/exist/xmlrpc";
+        String driver = "org.exist.xmldb.DatabaseImpl";
 
-	}catch(ParserConfigurationException | SAXException | IOException pce) {
-	}
+        XMLResource res = null;
+        Node resNode = null;
+//        File usersFile = new File("/Users/niallquinn/Developer/Java/clothesclub/clothesclub/Assets/Users.xml");
+//        DocumentBuilderFactory dbf = DocumentBuilderFactory.newInstance();
+        Document dom = null;
+        
+        try {
+            Class cl = Class.forName(driver);
+            Database database = (Database) cl.newInstance();
+            DatabaseManager.registerDatabase(database);
+
+            // get the collection
+            Collection col = (Collection) DatabaseManager.getCollection(URI + "/db/clothesclub", "admin", "");
+
+
+            col.setProperty(OutputKeys.INDENT, "no");
+            res = (XMLResource)col.getResource("Packages.xml");
+             
+            resNode = res.getContentAsDOM();
+
+            dom = (Document) resNode;
+        }catch (Exception e) {
+            System.err.println("Error Document: "+e.getMessage());
+        }
+        
+        if (dom == null) {
+            return;
+        }
         
         //get the root element
 	Element docEle = dom.getDocumentElement();
@@ -212,5 +282,90 @@ public class ApplicationController
 	}
 
 	return textVal;
+    }
+    
+    public void writeStateToXML() throws TransformerConfigurationException {
+        try {
+ 
+		DocumentBuilderFactory docFactory = DocumentBuilderFactory.newInstance();
+		DocumentBuilder docBuilder = docFactory.newDocumentBuilder();
+ 
+		// root elements
+		Document doc = docBuilder.newDocument();
+		Element rootElement = doc.createElement("users");
+		doc.appendChild(rootElement);
+ 
+                for (User u : users) {
+                    Element user = doc.createElement("user");
+                    rootElement.appendChild(user);
+                    
+                    Element firstname = doc.createElement("firstName");
+                    firstname.appendChild(doc.createTextNode(u.getFirstName()));
+                    user.appendChild(firstname);
+                    
+                    Element lastName = doc.createElement("lastName");
+                    lastName.appendChild(doc.createTextNode(u.getLastName()));
+                    user.appendChild(lastName);
+                    
+                    Element dob = doc.createElement("dob");
+                    if (u.getDob()!=null) {
+                        dob.appendChild(doc.createTextNode(u.getDob()));
+                    } else {
+                        dob.appendChild(doc.createTextNode("dd/mm/yyyy"));
+                    }
+                    user.appendChild(dob);
+                    
+                    String sexString = (u.getSex()==Sex.MALE) ? "male":"female";
+                    Element sex = doc.createElement("sex");
+                    sex.appendChild(doc.createTextNode(sexString));
+                    user.appendChild(sex);
+                    
+                    String styleString = (u.getStyle()==Style.FORMAL) ? "formal":"teen";
+                    Element style = doc.createElement("style");
+                    style.appendChild(doc.createTextNode(styleString));
+                    user.appendChild(style);
+                }
+ 
+		// write the content into xml file
+		TransformerFactory transformerFactory = TransformerFactory.newInstance();
+		Transformer transformer = transformerFactory.newTransformer();
+		DOMSource source = new DOMSource(doc);
+                
+                String URI = "xmldb:exist://localhost:8444/exist/xmlrpc";
+                String driver = "org.exist.xmldb.DatabaseImpl";
+
+                XMLResource res = null;
+                Node resNode = null;
+                Document dom = null;
+
+                try {
+                    Class cl = Class.forName(driver);
+                    Database database = (Database) cl.newInstance();
+                    DatabaseManager.registerDatabase(database);
+
+                    // get the collection
+                    Collection col = (Collection) DatabaseManager.getCollection(URI + "/db/clothesclub", "admin", "");
+
+
+                    col.setProperty(OutputKeys.INDENT, "no");
+                    res = (XMLResource)col.getResource("Users.xml");
+
+                    res.setContentAsDOM(doc);
+
+                    col.storeResource(res);
+                }catch (Exception e) {
+                    System.err.println("Error Document: "+e.getMessage());
+                }
+                        System.out.println("File saved!");
+
+                  } catch (ParserConfigurationException pce) {
+                  } catch (TransformerException tfe) {
+                }
+	
+    }
+
+    private Object getServletContext()
+    {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 }

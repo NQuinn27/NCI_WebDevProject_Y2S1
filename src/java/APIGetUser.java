@@ -82,6 +82,9 @@ public class APIGetUser extends HttpServlet
         {
             Logger.getLogger(APIGetUser.class.getName()).log(Level.SEVERE, null, ex);
             return;
+        } catch (ClassNotFoundException ex)
+        {
+            Logger.getLogger(APIGetUser.class.getName()).log(Level.SEVERE, null, ex);
         }
         User u = controller.getUserList().get(userId);
         

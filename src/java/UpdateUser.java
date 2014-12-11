@@ -4,7 +4,6 @@
  * WebDevProject
  */
 import java.io.IOException;
-import java.io.PrintWriter;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.servlet.ServletException;
@@ -13,6 +12,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.xml.bind.JAXBException;
+import javax.xml.transform.TransformerConfigurationException;
 import webApp.ApplicationController;
 import webApp.Sex;
 import webApp.Style;
@@ -77,7 +77,7 @@ public class UpdateUser extends HttpServlet
         if (id == -1) {
             return;
         }
-        ApplicationController controller;
+        ApplicationController controller = null;
         try
         {
             controller = ApplicationController.getShared();
@@ -85,9 +85,12 @@ public class UpdateUser extends HttpServlet
         {
             Logger.getLogger(UsersServlet.class.getName()).log(Level.SEVERE, null, ex);
             return;
+        } catch (ClassNotFoundException ex)
+        {
+            Logger.getLogger(UpdateUser.class.getName()).log(Level.SEVERE, null, ex);
         }
         
-        User u = controller.getUserById(id);
+        User u = controller.getUserList().get(id);
         String firstName = request.getParameter("firstName");
         String lastName = request.getParameter("lastName");
         String dob = request.getParameter("dob");
@@ -102,6 +105,14 @@ public class UpdateUser extends HttpServlet
         u.setSex(_sex);
         u.setDob(dob);
         u.setStyle(_style);
+        
+        try
+        {
+            controller.writeStateToXML();
+        } catch (TransformerConfigurationException ex)
+        {
+            Logger.getLogger(UpdateUser.class.getName()).log(Level.SEVERE, null, ex);
+        }
         
         request.setAttribute("user", u);
         request.getRequestDispatcher("/user.jsp").forward(request, response);

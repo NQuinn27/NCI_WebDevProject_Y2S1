@@ -10,11 +10,6 @@
 
 package webApp;
 
-import javax.xml.bind.annotation.XmlAttribute;
-import javax.xml.bind.annotation.XmlElement;
-import javax.xml.bind.annotation.XmlRootElement;
-
-
 public class User
 {
         
@@ -95,6 +90,20 @@ public class User
         o = o + "\"lastName\":\"" + lastName + "\",";
         o = o + "\"dob\":\"" + dob + "\"";
         o = o + "}";
+        return o;
+    }
+    
+    public String XMLRepresentation() {
+        String o = "<user>\n";
+        o = o + "\t<id>" + 0 + "</id>\n";
+        o = o + "\t<firstName>" + firstName + "</firstName>\n";
+        o = o + "\t<lastName>" + lastName + "</lastName>\n";
+        o = o + "\t<dob>" + dob  + "</dob>\n";
+        String sexString = (sex==Sex.MALE) ? "male":"female";
+        o = o + "\t<sex>" + sexString + "</sex>\n";
+        String styleString = (style==Style.FORMAL) ? "formal":"teen";
+        o = o + "\t<sex>" + styleString + "</sex>\n";
+        o = o + "</user>";
         return o;
     }
 }
